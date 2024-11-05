@@ -1,2 +1,13 @@
 info: Opening plain database via sqlite backend.
 info: No plain database available. Continuing with sqlite database.
+
+** (org.pwmt.zathura:11946): WARNING **: 18:47:11.419: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Avahi was not provided by any .service files
+
+** (org.pwmt.zathura:11946): WARNING **: 18:47:11.419: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Avahi was not provided by any .service files
+info: Opening plain database via sqlite backend.
+info: No plain database available. Continuing with sqlite database.
+info: Opening plain database via sqlite backend.
+info: No plain database available. Continuing with sqlite database.
+Gdk-Message: 20:12:08.295: Error reading events from display: Broken pipe
+info: Opening plain database via sqlite backend.
+info: No plain database available. Continuing with sqlite database.
