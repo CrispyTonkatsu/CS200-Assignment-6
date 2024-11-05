@@ -89,7 +89,11 @@ cs200::TextureRender::TextureRender() :
   utransform = glGetUniformLocation(program, "transform");
 }
 
-cs200::TextureRender::~TextureRender() { glDeleteProgram(program); }
+cs200::TextureRender::~TextureRender() {
+  // TODO: Ask if the TextureRender class should unload the texture and the mesh
+  // from here.
+  glDeleteProgram(program);
+}
 
 void cs200::TextureRender::clearFrame(const glm::vec4 &c) {
   glClearColor(c.x, c.y, c.z, c.w); // NOLINT
@@ -117,7 +121,9 @@ void cs200::TextureRender::loadTexture(
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
-void cs200::TextureRender::unloadTexture() {}
+void cs200::TextureRender::unloadTexture() {
+  glDeleteTextures(1, &texture_buffer);
+}
 
 void cs200::TextureRender::setTransform(const glm::mat4 &M) {
   glUseProgram(program);
