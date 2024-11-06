@@ -90,8 +90,6 @@ cs200::TextureRender::TextureRender() :
 }
 
 cs200::TextureRender::~TextureRender() {
-  // TODO: Ask if the TextureRender class should unload the texture and the mesh
-  // from here.
   glDeleteProgram(program);
 }
 
@@ -123,6 +121,7 @@ void cs200::TextureRender::loadTexture(
 
 void cs200::TextureRender::unloadTexture() {
   glDeleteTextures(1, &texture_buffer);
+  glDeleteBuffers(1, &texcoord_buffer);
 }
 
 void cs200::TextureRender::setTransform(const glm::mat4 &M) {
