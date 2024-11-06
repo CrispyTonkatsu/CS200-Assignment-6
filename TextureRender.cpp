@@ -89,9 +89,7 @@ cs200::TextureRender::TextureRender() :
   utransform = glGetUniformLocation(program, "transform");
 }
 
-cs200::TextureRender::~TextureRender() {
-  glDeleteProgram(program);
-}
+cs200::TextureRender::~TextureRender() { glDeleteProgram(program); }
 
 void cs200::TextureRender::clearFrame(const glm::vec4 &c) {
   glClearColor(c.x, c.y, c.z, c.w); // NOLINT
@@ -120,8 +118,12 @@ void cs200::TextureRender::loadTexture(
 }
 
 void cs200::TextureRender::unloadTexture() {
-  glDeleteTextures(1, &texture_buffer);
-  glDeleteBuffers(1, &texcoord_buffer);
+  glUseProgram(0);
+
+  if (texture_buffer != 0) {
+    glDeleteTextures(1, &texture_buffer);
+    texture_buffer = 0;
+  }
 }
 
 void cs200::TextureRender::setTransform(const glm::mat4 &M) {
@@ -189,10 +191,27 @@ void cs200::TextureRender::loadMesh(const TexturedMesh &m) {
 }
 
 void cs200::TextureRender::unloadMesh() {
-  glDeleteVertexArrays(1, &vao);
+  glUseProgram(0);
 
-  glDeleteBuffers(1, &face_buffer);
-  glDeleteBuffers(1, &vertex_buffer);
+  if (vao != 0) {
+    glDeleteVertexArrays(1, &vao);
+    vao = 0;
+  }
+
+  if (face_buffer != 0) {
+    glDeleteBuffers(1, &face_buffer);
+    face_buffer = 0;
+  }
+
+  if (vertex_buffer != 0) {
+    glDeleteBuffers(1, &vertex_buffer);
+    vertex_buffer = 0;
+  }
+
+  if (texcoord_buffer != 0) {
+    glDeleteBuffers(1, &texcoord_buffer);
+    texcoord_buffer = 0;
+  }
 
   mesh_face_count = 0;
 }
